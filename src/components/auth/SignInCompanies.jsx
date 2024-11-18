@@ -72,7 +72,7 @@ export function SignInCompanies() {
         <div className="grid justify-center items-center h-[100vh] md:grid-cols-2 gap-4">
         <div className="flex justify-center items-center">
             <form className="w-full lg:w-2/4 " onSubmit={handleSubmit}>
-                <img className="w-[12rem] mx-auto mt-8 mb-12 " src="/assets/imgs/escape.jpg" alt="Logo" /> 
+                <img className="w-[12rem] mx-auto mt-8 mb-12 " src="../assets/imgs/escape.jpg" alt="Logo" /> 
                 <h2 className="text-4xl font-bold text-center mb-8 text-sky-500">{t('login')}</h2>
                 <AuthInput name="email" placeholder={t('iEmail')} type="email" onChange={e => setEmail(e.target.value)}/>
                 <AuthInput name="password" placeholder={t('iPassword')} type="password" className="mb-4 lg:mb-4" onChange={e => setPassword(e.target.value)}/>
