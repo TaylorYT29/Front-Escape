@@ -85,7 +85,7 @@ export function AccountSettings({ toggleDarkMode }) {
 
     useEffect(() => {
         const fetchCantones = async () => {
-            const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/cantons');
+            const response = await fetch('https://myescape.online/api/cantons');
             const data = await response.json();
             console.log("Cantones cargados:", data);
             setCantones(data);
@@ -97,7 +97,7 @@ export function AccountSettings({ toggleDarkMode }) {
     useEffect(() => {
         if (formData.canton) {
             const fetchDistritos = async () => {
-                const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/cantons/${formData.canton}/districts`);
+                const response = await fetch(`https://myescape.online/api/cantons/${formData.canton}/districts`);
                 const data = await response.json();
                 setDistritos(data);
             };
@@ -136,7 +136,7 @@ export function AccountSettings({ toggleDarkMode }) {
         }
 
         try {
-            const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/update-user', {
+            const response = await fetch('https://myescape.online/api/update-user', {
                 method: 'POST',
                 //headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',
@@ -190,7 +190,7 @@ export function AccountSettings({ toggleDarkMode }) {
                         {console.log("user:", user)}
                         {console.log("user.image:", user?.image)}
                         <img
-                            src={previewURL || (user && user.image ? `http://localhost/escape-desarrollo-backend/public/imgs/${user.image}` : "https://cdn-icons-png.flaticon.com/512/149/149071.png")}
+                            src={previewURL || (user && user.image ? `https://myescape.online/imgs/${user.image}` : "https://cdn-icons-png.flaticon.com/512/149/149071.png")}
                             alt="Profile_Img" 
                             className="rounded-full h-[7rem] w-[7rem] mt-[2rem]"
                         />

@@ -29,7 +29,7 @@ export function ChangePassword({ close }) {
         id: user.id
       }
 
-      const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/change-password', {
+      const response = await fetch('https://myescape.online/api/change-password', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

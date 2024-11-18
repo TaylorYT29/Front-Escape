@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost/escape-desarrollo-backend/public/api';
+const BASE_URL = 'https://myescape.online/api';
 
 const fetchConfig = {
     credentials: 'include',

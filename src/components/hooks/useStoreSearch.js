@@ -18,7 +18,7 @@ export const useStoreSearch = () => {
                 body.user_id = user.id;
               }
 
-            const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/search/store', {
+            const response = await fetch('https://myescape.online/api/search/store', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

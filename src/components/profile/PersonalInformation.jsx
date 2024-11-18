@@ -33,13 +33,13 @@ export function PersonalInformation() {
   };
 
   const { data, loading } = useFetchData(
-    `http://localhost/escape-desarrollo-backend/public/api/following/` + user.id
+    `http://myescape.online/api/following/` + user.id
  
    );
 
    const follower = async (idCompany) => {
     try {
-        fetch(`http://localhost/escape-desarrollo-backend/public/api/follower`, {
+        fetch(`http://myescape.online/api/follower`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export function PersonalInformation() {
             <img
               src={
                 user && user.image
-                  ? `http://localhost/escape-desarrollo-backend/public/imgs/${user.image}`
+                  ? `https://myescape.online/imgs/${user.image}`
                   : "https://cdn-icons-png.flaticon.com/512/149/149071.png"
               }
               alt="Profile_Img"

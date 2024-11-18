@@ -21,12 +21,12 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
             let url;
 
             if (company_id !== null) {
-                url = new URL(`http://localhost/escape-desarrollo-backend/public/api/company-posts`);
+                url = new URL(`http://myescape.online/api/company-posts`);
                 url.searchParams.append('company_id', company_id);
             } else {
                 const baseUrl = userTypeFilter === 1
-                    ? 'http://localhost/escape-desarrollo-backend/public/api/company-posts'
-                    : 'http://localhost/escape-desarrollo-backend/public/api/posts';
+                    ? 'http://myescape.online/api/company-posts'
+                    : 'http://myescape.online/api/posts';
 
                 url = new URL(baseUrl);
                 if (user.user_type_id === 1) {
@@ -81,7 +81,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
                 body.user_id = user.id;
             }
 
-            const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/posts/${postId}/like`, {
+            const response = await fetch(`https://myescape.online/api/posts/${postId}/like`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -153,7 +153,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
         }
 
         try {
-            const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/create/post', {
+            const response = await fetch('https://myescape.online/api/create/post', {
                 method: 'POST',
                 body: formData,
                 credentials: 'include',
@@ -189,7 +189,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
 
         const fetchPostData = async () => {
             try {
-                const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/posts/${id}`);
+                const response = await fetch(`https://myescape.online/api/posts/${id}`);
                 if (!response.ok) {
                     throw new Error('Error al obtener la publicación');
                 }
@@ -199,7 +199,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
 
                 if (data.files) {
                     const filePreviews = data.files.map(file => {
-                        const filePath = `http://localhost/escape-desarrollo-backend/public/storage/${file.file_path}`;
+                        const filePath = `https://myescape.online/storage/${file.file_path}`;
 
                         const fileType = file.file_path.split('.').pop().toLowerCase();
                         const type = ['jpg', 'jpeg', 'png', 'gif'].includes(fileType) ? 'image' :
@@ -256,7 +256,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
                 }
             }
 
-            const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/update/post/${id}`, {
+            const response = await fetch(`https://myescape.online/api/update/post/${id}`, {
                 method: 'POST',
                 body: formData,
                 credentials: 'include',
@@ -306,7 +306,7 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
         if (!confirmDelete) return;
 
         try {
-            const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/delete/post/${id}`, {
+            const response = await fetch(`https://myescape.online/api/delete/post/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ company_id: user.id }),

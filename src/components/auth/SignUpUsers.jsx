@@ -159,7 +159,7 @@ export function SignUpUsers() {
     useEffect(() => {
         if (selectedCanton) {
 
-            fetch(`http://localhost/escape-desarrollo-backend/public/api/cantons/${selectedCanton}/districts`)
+            fetch(`https://myescape.online/api/cantons/${selectedCanton}/districts`)
                 .then((response) => response.json())
                 .then((data) => {
                     setDistricts(data); 
@@ -291,7 +291,7 @@ export function SignUpUsers() {
 
                 console.log(latitude, longitude);
 
-                const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/register', {
+                const response = await fetch('https://myescape.online/api/register', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
@@ -328,7 +328,7 @@ export function SignUpUsers() {
             }
         } else {
             try {
-                const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/register', {
+                const response = await fetch('https://myescape.online/api/register', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },

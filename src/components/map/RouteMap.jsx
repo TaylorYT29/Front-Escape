@@ -13,7 +13,7 @@ export const RouteMap = () => {
 
   
   const { user } = useUser();
-  let url = `http://localhost/escape-desarrollo-backend/public/api/companies/`+user.id;
+  let url = `https://myescape.online/api/companies/`+user.id;
   const location = useLocation();
   const placeId = location.state?.placeId;
   const origin = [user.longitude, user.latitude];
@@ -34,7 +34,7 @@ export const RouteMap = () => {
   useEffect(() => {
     if (placeId != null) {
 
-      url = `http://localhost/escape-desarrollo-backend/public/api/company/${placeId}/${user.id}`;
+      url = `https://myescape.online/api/company/${placeId}/${user.id}`;
 
       console.log(placeId);
 

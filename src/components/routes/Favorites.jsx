@@ -22,18 +22,18 @@ export function Favorites() {
 
   const { isMobile } = useFetchMenubar();
   const { data: categories, loading: loadingCategories } = useFetchData(
-    "http://localhost/escape-desarrollo-backend/public/api/categories", 
+    "https://myescape.online/api/categories", 
     ['name']
   );
   const [district, setDistrict] = useState([]);
   const { data: cantons, loading: loadingCantons } = useFetchData(
-    "http://localhost/escape-desarrollo-backend/public/api/canton"
+    "https://myescape.online/api/canton"
   );
   const [isOpen, setIsOpen] = useState(false);
   const [isFilter, setIsFilter] = useState(false);
   const [idCategory, setIdCategory] = useState(0);
   const { data: subCategories, setData: setSubCategories } = useFetchData(
-    `http://localhost/escape-desarrollo-backend/public/api/subcategories/${idCategory}`,
+    `https://myescape.online/api/subcategories/${idCategory}`,
     ['name']
   );
 
@@ -42,9 +42,8 @@ export function Favorites() {
   const [idDistrict, setIdDistrict] = useState(0);
   
   const { data, loading, setData } = useFetchData(
-    `http://localhost/escape-desarrollo-backend/public/api/favorites/`+user.id
+    `https://myescape.online/api/favorites/`+user.id
   );
-
   const handleClose = () => setIsOpen(false);
   const handleClosFilter = () => setIsFilter(false);
 
@@ -55,7 +54,7 @@ export function Favorites() {
 
   const openCard = async (id) =>  {
     try {
-      const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/company/${id}/` + user.id);
+      const response = await fetch(`https://myescape.online/api/company/${id}/` + user.id);
       const result = await response.json();
       if (result[0].favorite != null) {
         setHearts(true);
@@ -79,7 +78,7 @@ export function Favorites() {
   };
   const favorite  = () => {
     console.log("La id de la card es "+id +" y el id del user es "+user.id);
-    fetch("http://localhost/escape-desarrollo-backend/public/api/favorite", {
+    fetch("https://myescape.online/api/favorite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -115,7 +114,7 @@ export function Favorites() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost/escape-desarrollo-backend/public/api/favorite/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
+          `https://myescape.online/api/favorite/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
         );
         const result = await response.json();
         console.log(result);
@@ -132,13 +131,13 @@ export function Favorites() {
     if (idCategory == id) {
       setIdCategory(0);
       fetchCategory(
-        `http://localhost/escape-desarrollo-backend/public/api/subcategories/0`,
+        `https://myescape.online/api/subcategories/0`,
         true
       );
     } else {
       setIdCategory(id);
       fetchCategory(
-        `http://localhost/escape-desarrollo-backend/public/api/subcategories/${id}`,
+        `https://myescape.online/api/subcategories/${id}`,
         true
       );
     }
@@ -147,7 +146,7 @@ export function Favorites() {
   const setdistrict = (id) => {
     setIdCanton(id);
     fetchCategory(
-      `http://localhost/escape-desarrollo-backend/public/api/district/${id}`,
+      `https://myescape.online/api/district/${id}`,
       false
     );
   };

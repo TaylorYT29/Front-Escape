@@ -88,14 +88,14 @@ export function SignUpCompanies() {
 
  
     const { data: category_id, loading: loadingCategories } = useFetchData(
-        "http://localhost/escape-desarrollo-backend/public/api/categories",
+        "https://myescape.online/api/categories",
         ["name"]
       );
 
     useEffect(() => {
         if (selectedCanton) {
             
-            fetch(`http://localhost/escape-desarrollo-backend/public/api/cantons/${selectedCanton}/districts`)
+            fetch(`https://myescape.online/api/cantons/${selectedCanton}/districts`)
                 .then((response) => response.json())
                 .then((data) => {
                     setDistricts(data); 
@@ -245,7 +245,7 @@ export function SignUpCompanies() {
 
                 console.log(latitude, longitude);
 
-                const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/company-register', {
+                const response = await fetch('https://myescape.online/api/company-register', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },
@@ -285,7 +285,7 @@ export function SignUpCompanies() {
             }
         } else {
             try {
-                const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/company-register', {
+                const response = await fetch('https://myescape.online/api/company-register', {
                     method: 'POST',
                     credentials: 'include',
                     headers: { 'Content-Type': 'application/json' },

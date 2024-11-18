@@ -60,7 +60,7 @@ export function PostCard({
   }, [id, getCommentCount]);
 
   const handleSharePost = () => {
-    const postUrl = `http://localhost/escape-desarrollo-backend/public/api/posts/${id}`;
+    const postUrl = `https://myescape.online/api/posts/${id}`;
     navigator.clipboard.writeText(postUrl)
       .then(() => alert("Link del post copiado al portapapeles"))
       .catch(error => console.error("Error al copiar el enlace:", error));

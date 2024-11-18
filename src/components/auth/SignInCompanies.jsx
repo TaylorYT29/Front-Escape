@@ -38,7 +38,7 @@ export function SignInCompanies() {
 
         setShowError(false);
 
-        const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/company-login', {
+        const response = await fetch('https://myescape.online/api/company-login', {
             method: 'POST',
             credentials: 'include',
             headers: {'Content-Type': 'application/json'},

@@ -12,7 +12,7 @@ export const useFetchSearchHistory = () => {
     const userId = user?.user_type_id === 2 ? user.id : null;
     const companyId = user?.user_type_id === 1 ? user.id : null;
 
-    const url = new URL('http://localhost/escape-desarrollo-backend/public/api/searches/recent');
+    const url = new URL('https://myescape.online/api/searches/recent');
     if (userId) url.searchParams.append('user_id', userId);
     if (companyId) url.searchParams.append('company_id', companyId);
     
@@ -41,7 +41,7 @@ export const useFetchSearchHistory = () => {
 
   const handleDeleteSearch = async (searchId) => {
     try {
-      const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/search/destroy/${searchId}`, {
+      const response = await fetch(`https://myescape.online/api/search/destroy/${searchId}`, {
         method: 'DELETE',
       });
 

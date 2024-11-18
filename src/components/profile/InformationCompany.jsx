@@ -37,7 +37,7 @@ export function InformationCompany() {
     const location = useLocation();
     const [idCompany] = useState(location.state);
      const { data, loading } = useFetchData(
-        `http://localhost/escape-desarrollo-backend/public/api/companyinfo/${idCompany}/` + user.id,
+        `http://myescape.online/api/companyinfo/${idCompany}/` + user.id,
         ["description", "sub_category_id"]
      
        );
@@ -48,7 +48,7 @@ export function InformationCompany() {
        
        const follower = async () => {
         try {
-            const response = await fetch("http://localhost/escape-desarrollo-backend/public/api/follower", {
+            const response = await fetch("http://myescape.online/api/follower", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

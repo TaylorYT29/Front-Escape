@@ -19,7 +19,7 @@ export const useSearchDropdown = (backendRecentSearches, storeSearchTerm, naviga
       setShowRecentSearches(true);
     } else {
       try {
-        const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/companies/suggestions?query=${value}`, {
+        const response = await fetch(`https://myescape.online/api/companies/suggestions?query=${value}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',

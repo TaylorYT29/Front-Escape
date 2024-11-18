@@ -11,7 +11,7 @@ export function SharedPost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await fetch(`http://escape-desarrollo-backend/api/posts/${id}`);
+        const response = await fetch(`https://myescape.online/api/posts/${id}`);
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }

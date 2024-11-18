@@ -19,7 +19,7 @@ export function Sidebar() {
     const profileUrl = user && user.user_type_id === 1 ? "/PersonalInformationCompany" : "/PersonalInformation";
 
     const handleLogout = async () => {
-        const response = await fetch('http://localhost/escape-desarrollo-backend/public/api/logout', {
+        const response = await fetch('https://myescape.online/api/logout', {
             method: 'POST',
             credentials: 'include',
             headers: {

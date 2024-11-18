@@ -48,7 +48,7 @@ export function Home() {
 
   const openCard = async (id) => {
     try {
-      const response = await fetch(`http://localhost/escape-desarrollo-backend/public/api/company/${id}/` + user.id);
+      const response = await fetch(`https://myescape.online/api/company/${id}/` + user.id);
       const result = await response.json();
       if (result[0].favorite != null) {
         setHearts(true);
@@ -71,7 +71,7 @@ export function Home() {
     }
   };
   const favorite = () => {
-    fetch("http://localhost/escape-desarrollo-backend/public/api/favorite", {
+    fetch("https://myescape.online/api/favorite", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
