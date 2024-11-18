@@ -33,13 +33,13 @@ export function PersonalInformation() {
   };
 
   const { data, loading } = useFetchData(
-    `http://myescape.online/api/following/` + user.id
+    `https://myescape.online/api/following/` + user.id
  
    );
 
    const follower = async (idCompany) => {
     try {
-        fetch(`http://myescape.online/api/follower`, {
+        fetch(`https://myescape.online/api/follower`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

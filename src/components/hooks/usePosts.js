@@ -21,12 +21,12 @@ export const usePosts = (userTypeFilter = null, company_id = null) => {
             let url;
 
             if (company_id !== null) {
-                url = new URL(`http://myescape.online/api/company-posts`);
+                url = new URL(`https://myescape.online/api/company-posts`);
                 url.searchParams.append('company_id', company_id);
             } else {
                 const baseUrl = userTypeFilter === 1
-                    ? 'http://myescape.online/api/company-posts'
-                    : 'http://myescape.online/api/posts';
+                    ? 'https://myescape.online/api/company-posts'
+                    : 'https://myescape.online/api/posts';
 
                 url = new URL(baseUrl);
                 if (user.user_type_id === 1) {

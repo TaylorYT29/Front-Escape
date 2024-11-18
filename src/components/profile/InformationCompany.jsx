@@ -37,7 +37,7 @@ export function InformationCompany() {
     const location = useLocation();
     const [idCompany] = useState(location.state);
      const { data, loading } = useFetchData(
-        `http://myescape.online/api/companyinfo/${idCompany}/` + user.id,
+        `https://myescape.online/api/companyinfo/${idCompany}/` + user.id,
         ["description", "sub_category_id"]
      
        );
