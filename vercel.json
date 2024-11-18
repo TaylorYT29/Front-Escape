@@ -1,16 +1,8 @@
 {
-  "redirects": [
-    {
-      "source": "/:path*", 
-      "has": [
-        {
-          "type": "query",
-          "key": "id",
-          "value": "(?!^$)" 
-        }
-      ],
-      "destination": "/",
-      "permanent": false
-    }
-  ]
+    "rewrites": [
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
+    ]
 }
