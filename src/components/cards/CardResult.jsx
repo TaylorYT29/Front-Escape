@@ -12,8 +12,28 @@ export function CardResult({ image, name, city, followers, description, phone_nu
 
     const { t } = useTranslation();
 
+    /*const [travelMode, setTravelMode] = useState('pedestrian');
+    const { t } = useTranslation();
+     
+    const url = `http://localhost/escape-desarrollo-backend/public/api/companies/` + user.id;
+    const { data: companies, loading, error } = useFetchData(url);
+
+    if (companies.name == name){
+
+        placeData = companies;
+        console.log(placeData);
+    }
+    
+
+    const { travelTime } = useFetchTravelTime(placeData, travelMode);
+
+    const handleTravelModeChange = (mode) => {
+        console.log(mode);
+        setTravelMode(mode);
+    };*/
+
     return (
-        <div className="lg:max-w-[800px] sm:max-w-[400px] w-full mx-auto grid lg:grid-cols-[1.7fr_2fr] gap-8 p-6 bg-white rounded-lg shadow dark:bg-[#404040]">
+        <div className="lg:max-w-[800px] sm:max-w-[400px] w-full mx-auto grid grid-cols-[repeat(auto-fit,_minmax(200px,_1fr))] gap-8 p-6 bg-white rounded-lg shadow dark:bg-[#404040]">
             <div className="flex justify-center items-center">
                 <img className="lg:rounded-full lg:w-[20rem] lg:h-[20rem] lg:object-cover rounded-lg w-full h-[15rem]" src={image} alt={name} />
             </div>

@@ -12,9 +12,27 @@ export function Contact() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        setFormStatus("¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.");
+        try {
+            const response = await fetch("https://myescape.online/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+    
+            if (response.ok) {
+                setFormStatus("¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.");
+                setFormData({ name: "", email: "", message: "" });
+            } else {
+                setFormStatus("Hubo un problema al enviar tu mensaje. Inténtalo de nuevo más tarde.");
+            }
+        } catch (error) {
+            setFormStatus("Hubo un problema al enviar tu mensaje. Inténtalo de nuevo más tarde.");
+            console.error("Error al enviar el mensaje:", error);
+        }
     };
 
     return (
