@@ -7,7 +7,7 @@ export function CompanyDetails({ companyId }) {
   useEffect(() => {
     const fetchCompanyDetails = async () => {
       try {
-        const response = await fetch(`http://myescape.online/api/posts/2`);
+        const response = await fetch(`https://myescape.online/api/posts/2`);
         if (!response.ok) {
           throw new Error("Error al obtener los datos de la compañía");
         }
