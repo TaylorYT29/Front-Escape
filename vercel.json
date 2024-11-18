@@ -9,7 +9,7 @@
           "value": "(?!^$)" 
         }
       ],
-      "destination": "/landing",
+      "destination": "/",
       "permanent": false
     }
   ]
