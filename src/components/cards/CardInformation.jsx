@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../../index.css";
 //import a from "../../assets/imgs/Place1.jpg";
 import start from "../../assets/imgs/start.svg";
+import greyStar from "../../assets/imgs/greyStar.svg";
 import location from "../../assets/imgs/location.svg";
 import money from "../../assets/imgs/money.svg";
 import guide from "../../assets/imgs/guide.svg";
@@ -15,20 +16,25 @@ import { useTranslation } from 'react-i18next';
 
 import propTypes from "prop-types";
 
-export function CardInformation({ onClose, favorite, hearts, setHearts, placeData }) {
+export function CardInformation({ onClose, favorite, hearts, setHearts, placeData, starsData, arrayStartPlace, starts}) {
 
   const { user } = useUser();
   const { t } = useTranslation();
   const [travelTime, setTravelTime] = useState(null);
   const [travelMode, setTravelMode] = useState('pedestrian');
   const navigate = useNavigate();
-
-
+  const [visible, setVisible] = useState(false);
+  const tooltipRef = useRef(null);
+  const [hoveredStar, setHoveredStar] = useState(0); 
+  const [userRating, setUserRating] = useState(0);
+  const [rating, setRating] = useState(0);
 
   useEffect(() => {
+
     if (!placeData || !placeData[0] || !user) return;
 
     const place = placeData[0];
+    ControlRating();
 
     if (place.longitude && place.latitude && user.longitude && user.latitude) {
 
@@ -52,6 +58,17 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
     } else {
       setTravelTime(t('Calculating'));
     }
+
+    const handleClickOutside = (event) => {
+      if (tooltipRef.current && !tooltipRef.current.contains(event.target)) {
+        setVisible(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+
   }, [placeData, user, travelMode]);
 
 
@@ -60,7 +77,6 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
     const mins = minutos % 60;
     return horas >= 1 ? `${horas}h ${mins}min` : `${mins}min`;
   }
-
 
 
   if (!placeData || !placeData[0]) {
@@ -74,8 +90,6 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
     onClose();
   }
 
-
-
   const handleTravelModeChange = (mode) => {
     console.log(mode);
     setTravelMode(mode);
@@ -83,6 +97,63 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
 
   const goToMapCard = () => {
     navigate('/mapWithRoute', { state: { placeId: place.id } })
+  };
+
+  const handleStarClick = (value) => {
+
+    setVisible(false);
+    calculateAverageRating(value);
+
+  };
+
+  const calculateAverageRating = (value) => {
+
+      const updatedDataStart = arrayStartPlace.map((r) => 
+      r.post_place_id === place.id && r.user_id === user.id
+        ? { ...r, rating: value }
+        : r
+    );
+
+    if (updatedDataStart.length > 0) {
+      const average = updatedDataStart.reduce((sum, r) => sum + r.rating, 0) / updatedDataStart.length;
+      const result = average.toFixed(1);
+      starts(place.id, result, value);
+    }else{
+      const result = value.toFixed(1);
+      console.log(place.id, result, value);
+      starts(place.id, result, value); //Si no hay datos se guarda el rating
+    }
+
+  }
+
+  const renderStars = () => {
+    
+    return Array.from({ length: 5 }, (_, index) => {
+      const starValue = index + 1;
+      return (
+        <img
+          key={starValue}
+          src={starValue <= (hoveredStar || userRating) ? start : greyStar} 
+          alt={`star-${starValue}`}
+          onClick={() => handleStarClick(starValue)} 
+          onMouseEnter={() => setHoveredStar(starValue)} 
+          onMouseLeave={() => setHoveredStar(0)} 
+          style={{ cursor: "pointer", width: "28px", height: "28px" }}
+        />
+      );
+    });
+  };
+
+  const ControlRating = () => {
+
+    if(starsData){
+      setUserRating(starsData.rating);
+      setRating(parseFloat(starsData.post_place_average_rating).toFixed(1));
+    }else{
+      setUserRating(0);
+      setRating(0);
+    }
+  
   };
 
   return (
@@ -95,10 +166,20 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
       
       <div className="flex justify-between mt-4">
         <h3 className="text-black font-semibold text-3xl dark:text-white">{place.name}</h3>
-        <div className="flex items-center gap-1">
-          <img src={start} alt="start" />
+        <div className="flex items-center gap-1 relative">
+          <img onClick={() => setVisible(!visible)} style={{ cursor: 'pointer', fontSize: '24px' }} src={start} alt="start" />
+
+          {visible && (
+            <div ref={tooltipRef} className="absolute left-1/2 transform -translate-x-[150px] -top-10 z-10 w-48 bg-white dark:bg-[#404040] shadow-lg p-2 rounded-lg text-sm text-gray-700">
+              <p className="font-semibold dark:text-[#BCBCBC]">Rating</p>
+              <div className="flex gap-1 mt-1">
+                {renderStars()}
+              </div>
+            </div>
+          )}
+
           <p className="text-[#9A9797] font-semibold text-xl dark:text-[#BCBCBC]">
-            2.5
+            {rating}
           </p>
         </div>
       </div>

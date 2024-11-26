@@ -15,7 +15,7 @@ export function CardResult({ image, name, city, followers, description, phone_nu
     /*const [travelMode, setTravelMode] = useState('pedestrian');
     const { t } = useTranslation();
      
-    const url = `http://localhost/escape-desarrollo-backend/public/api/companies/` + user.id;
+    const url = `https://myescape.online/api/companies/` + user.id;
     const { data: companies, loading, error } = useFetchData(url);
 
     if (companies.name == name){

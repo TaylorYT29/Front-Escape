@@ -44,6 +44,7 @@ export function Favorites() {
   const { data, loading, setData } = useFetchData(
     `https://myescape.online/api/favorites/`+user.id
   );
+
   const handleClose = () => setIsOpen(false);
   const handleClosFilter = () => setIsFilter(false);
 

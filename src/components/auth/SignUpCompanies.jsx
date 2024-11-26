@@ -217,7 +217,7 @@ export function SignUpCompanies() {
         console.log("Nombre:", name);
         console.log("Phone number:", phone_number);
         console.log("Category:", category_id);
-        console.log("Sub_categories:", sub_categories_id)
+        console.log("Sub_categories:", sub_categories_id);
         console.log("Email:", email);
         console.log("Description:", description);
         console.log("Canton:", selectedCanton);
@@ -256,7 +256,7 @@ export function SignUpCompanies() {
                         sub_categories_id: selectedSub_categories,
                         email,
                         description,
-                        //image
+                        image: 'default-img.png',
                         latitude: latitude,
                         longitude: longitude,
                         canton_id: selectedCanton,
@@ -296,7 +296,7 @@ export function SignUpCompanies() {
                         sub_categories_id: selectedSub_categories,
                         email,
                         description,
-                        //image
+                        image: 'default-img.png',
                         latitude: null,
                         longitude: null,
                         canton_id: selectedCanton,

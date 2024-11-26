@@ -48,7 +48,7 @@ export function InformationCompany() {
        
        const follower = async () => {
         try {
-            const response = await fetch("http://myescape.online/api/follower", {
+            const response = await fetch("https://myescape.online/api/follower", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

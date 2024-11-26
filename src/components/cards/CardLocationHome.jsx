@@ -3,8 +3,8 @@ import "../../index.css";
 import start from "../../assets/imgs/start.svg";
 import location from "../../assets/imgs/location.svg";
 
-export function CardLocationHome({ image, name, city ,starts,setIsOpen,id}) {
-    
+export function CardLocationHome({ image, name, city , starts, setIsOpen, id}) {
+
     return (
        
         <div className="md:w-[303px]  lg:max-w-sm sm:w-full bg-white  rounded-lg shadow-sm dark:bg-[#404040] lg:h-[410px] h-[380px] cursor-pointer" onClick={ () => setIsOpen(id)} >

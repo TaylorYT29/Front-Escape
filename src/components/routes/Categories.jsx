@@ -37,7 +37,7 @@ export function Categories() {
   const [isFilter, setIsFilter] = useState(false);
   const [idCategory, setIdCategory] = useState(location.state);
   const { data: subCategories, setData: setSubCategories } = useFetchData(
-   `https://myescape.online/api/subcategories/${idCategory}`,
+    `https://myescape.online/api/subcategories/${idCategory}`,
     ["name"]
   );
 
@@ -48,7 +48,7 @@ export function Categories() {
     setIdCategory(0);
   }
   const { data, loading, setData } = useFetchData(
-     `https://myescape.online/api/items/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
+    `https://myescape.online/api/items/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
   );
 
   const handleClose = () => setIsOpen(false);
@@ -60,7 +60,7 @@ export function Categories() {
 
   const openCard = async (id) =>  {
     try {
-      const response = await fetch(`https://myescape.online/api/company/${id}/` + user.id + user.id);
+      const response = await fetch(`https://myescape.online/api/company/${id}/` + user.id);
       const result = await response.json();
       if (result[0].favorite != null) {
         setHearts(true);
@@ -118,7 +118,7 @@ export function Categories() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-         `https://myescape.online/api/items/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
+          `https://myescape.online/api/items/${idCategory}/${idCategorySub}/${idCanton}/${idDistrict}/${user.id}`
         );
         const result = await response.json();
         setData(result);

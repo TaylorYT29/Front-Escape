@@ -27,6 +27,7 @@ export const MapPage = () => {
       zoom: 15
     });
 
+
     //Create a Marker 
     map.on('load', () => {
       new tt.Marker().setLngLat(center).addTo(map);

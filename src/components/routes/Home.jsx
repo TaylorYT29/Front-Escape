@@ -44,12 +44,18 @@ export function Home() {
     }
   };
   const [informationCard, setInformationCard] = useState(null);
-
+  const [starsPlace, setStarsPlace] = useState(null);
+  const [arrayStars, setArrayStars] = useState([]);
 
   const openCard = async (id) => {
     try {
       const response = await fetch(`https://myescape.online/api/company/${id}/` + user.id);
       const result = await response.json();
+
+      const urlStars = await fetch(`https://myescape.online/api/rating`);
+      const dataStart = await urlStars.json();
+      const starts =  dataStart.find(r => r.post_place_id === result[0].id && r.user_id === user.id);
+
       if (result[0].favorite != null) {
         setHearts(true);
         result[0].favorite = null;
@@ -60,6 +66,16 @@ export function Home() {
 
       if (i18n.language !== 'es') {
         result[0].description = await translateText(result[0].description, 'es', i18n.language);
+      }
+
+      if (starts) {
+        setStarsPlace(starts);
+        const array = dataStart.filter(r => r.post_place_id === result[0].id);
+        setArrayStars(array);
+      }else{
+        console.log('No se encontraron datos');
+        setStarsPlace(null);
+        setArrayStars([]);
       }
 
       setInformationCard(result);
@@ -82,8 +98,22 @@ export function Home() {
       }),
     });
     setHearts(!hearts);
-
   };
+
+  const starts = (placeId, result, value) => {
+    fetch('https://myescape.online/api/save-rating', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ 
+        user_id: user.id,
+        post_place_id: placeId, 
+        rating: value,
+        post_place_average_rating: result,
+      }),
+    });
+  }
 
   return (
 
@@ -94,7 +124,7 @@ export function Home() {
       </div>
       <Drawer open={isOpen} onClose={handleClose} position="right" className="w-full md:w-1/2 lg:w-1/3 dark:bg-[#2a2a2a]">
         <Drawer.Items>
-          <CardInformation placeData={informationCard} hearts={hearts} favorite={favorite} setHearts={setHearts} onClose={handleClose} />
+          <CardInformation placeData={informationCard} hearts={hearts} favorite={favorite} setHearts={setHearts} onClose={handleClose} starsData={starsPlace} arrayStartPlace={arrayStars} starts={starts} />
         </Drawer.Items>
       </Drawer>
 
