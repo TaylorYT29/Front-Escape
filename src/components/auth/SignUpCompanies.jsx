@@ -333,7 +333,7 @@ export function SignUpCompanies() {
             <div className="flex justify-center items-center">
 
                 <form className="w-full lg:w-2/4" onSubmit={handleSubmit}>
-                    <img className="w-[12rem] mx-auto mt-8 mb-9 " src="../src/assets/imgs/logo-celeste.png" alt="Logo" /> 
+                    <img className="w-[12rem] mx-auto mt-8 mb-9 " src="https://drive.google.com/uc?id=1-ziFzh2fviyHCXevbGgisr4YC5mrs25k" alt="Logo" /> 
                     <h2 className="text-4xl font-bold text-center text-sky-500">{t('signup')}</h2>
                     <div className="grid gap-4 mt-8">
                         {step === 1 && (

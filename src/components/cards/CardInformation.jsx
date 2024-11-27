@@ -38,7 +38,7 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
 
     if (place.longitude && place.latitude && user.longitude && user.latitude) {
 
-      /* 
+      
       const origin = [user.longitude, user.latitude];
       const destination = [place.longitude, place.latitude];
   
@@ -52,7 +52,7 @@ export function CardInformation({ onClose, favorite, hearts, setHearts, placeDat
           const travelTimeFormatted = convertirMinutosAHoras(travelTimeInMinutes);
           setTravelTime(travelTimeFormatted);
         })
-        .catch(error => console.error('Error al calcular la ruta:', error));*/
+        .catch(error => console.error('Error al calcular la ruta:', error));
 
       setTravelTime(t('Calculating'));
     } else {
