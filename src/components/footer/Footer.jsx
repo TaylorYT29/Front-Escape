@@ -1,7 +1,7 @@
 import "../../index.css";
 import { FooterLink } from "./FooterLink";
 import { useTranslation } from "react-i18next";
-import logo from '../../../assets/imgs/logo-celeste.png';
+import logo from '../../assets/imgs/logo-celeste.png';
 import { Link } from "react-router-dom";
 
 export function Footer(){
