@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useUser } from "../../context/UserContext.jsx";
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import logo from '../../assets/imgs/logo-celeste.png';
 
 export function SignInCompanies() {
     const { t } = useTranslation();
@@ -72,7 +73,7 @@ export function SignInCompanies() {
         <div className="grid justify-center items-center h-[100vh] md:grid-cols-2 gap-4">
         <div className="flex justify-center items-center">
             <form className="w-full lg:w-2/4 " onSubmit={handleSubmit}>
-                <img className="w-[12rem] mx-auto mt-8 mb-12 " src="https://drive.google.com/uc?id=1-ziFzh2fviyHCXevbGgisr4YC5mrs25k" alt="Logo" /> 
+                <img className="w-[12rem] mx-auto mt-8 mb-12 " src={logo} alt="Logo" /> 
                 <h2 className="text-4xl font-bold text-center mb-8 text-sky-500">{t('login')}</h2>
                 <AuthInput name="email" placeholder={t('iEmail')} type="email" onChange={e => setEmail(e.target.value)}/>
                 <AuthInput name="password" placeholder={t('iPassword')} type="password" className="mb-4 lg:mb-4" onChange={e => setPassword(e.target.value)}/>
